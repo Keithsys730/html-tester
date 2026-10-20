@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Broken Page</title>
+</head>
+<body>
+    <h1>HTML Tester Demo Target</h1>
+
+    <div class="card">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="John Doe">
+        
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="user">Standard User</option>
+            <option value="admin">Administrator</option>
+        </select>
+        
+        <button id="btn-valid" onclick="console.log('Valid action')">Submit Valid</button>
+    </div>
+
+    <div class="card-danger">
+        <!-- Broken button triggering runtime exception -->
+        <button id="btn-broken" onclick="triggerBrokenLogic()">Trigger Bug</button>
+    </div>
+
+    <!-- Broken local image asset -->
+    <img src="non_existent_banner.png" alt="Missing Banner">
+
+    <script>
+        function triggerBrokenLogic() {
+            // Intentionally undefined reference
+            let result = uninitializedVariable.compute();
+            console.log(result);
+        }
+
+        // Outbound fetch that should be safely sandboxed/mocked
+        fetch("https://api.thirdparty-payment.com/v1/charge", { method: "POST" })
+            .then(res => res.json())
+            .then(data => console.log("Egress Mocked:", data))
+            .catch(err => console.error("Egress error:", err));
+    </script>
+</body>
+</html>

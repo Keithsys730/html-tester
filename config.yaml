@@ -1,0 +1,25 @@
+# html-tester configuration
+server:
+  host: "127.0.0.1"
+  port_range: [8000, 9000]
+
+browser:
+  headless: true
+  preferred_channels: ["msedge", "chrome", "chromium"]
+  action_timeout_ms: 5000
+  navigation_timeout_ms: 10000
+  quiescence_wait_ms: 400
+
+scanner:
+  max_interactive_budget_per_element: 2
+  action_batch_limit: 50
+  encoding_fallback_order: ["utf-8", "utf-8-sig", "cp950", "gbk", "latin-1"]
+
+llm:
+  enabled: true
+  roles:
+    explorer: "gemini-2.5-flash"
+    fixer: "claude-3-7-sonnet"
+    reviewer: "gemini-2.5-pro"
+  failover_chain: ["gemini", "anthropic", "openai", "local"]
+  max_heal_rounds: 3

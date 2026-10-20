@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+html_tester.log
+backup/
+output/artifacts/*.png
+output/reports/*.md
+output/fixed/*.html
